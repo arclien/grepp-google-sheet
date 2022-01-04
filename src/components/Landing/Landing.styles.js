@@ -11,13 +11,6 @@ export const Title = styled.div`
   ${font({ size: '20px', color: gray400 })};
 `
 
-export const ClickButton = styled(NewBaseButton)`
-  ${font({ size: '14px', weight: 'bold', color: white })};
-
-  margin-bottom:10px;
-`;
-
-
 export const SpinnerContainer = styled.div`
   ${flexContainer('center', 'center')};
 

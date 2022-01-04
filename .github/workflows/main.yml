@@ -24,7 +24,12 @@ jobs:
           yarn build
 
         env:
-          # REACT_APP_KAKAO_APP_KEY: ${{ secrets.REACT_APP_KAKAO_APP_KEY }}
+          REACT_APP_GOOGLE_DOC_ID: ${{ secrets.REACT_APP_GOOGLE_DOC_ID }}
+          REACT_APP_GOOGLE_SHEET_ID: ${{ secrets.REACT_APP_GOOGLE_SHEET_ID }}
+          REACT_APP_GOOGLE_SHEET_NAME: ${{ secrets.REACT_APP_GOOGLE_SHEET_NAME }}
+
+          REACT_APP_GOOGLE_SERVICE_CLIENT_EMAIL: ${{ secrets.REACT_APP_GOOGLE_SERVICE_CLIENT_EMAIL }}
+          REACT_APP_GOOGLE_SERVICE_PRIVATE_KEY: ${{ secrets.REACT_APP_GOOGLE_SERVICE_PRIVATE_KEY }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

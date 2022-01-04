@@ -8,13 +8,14 @@ import GlobalHelmet from 'components/GlobalHelmet/GlobalHelmet';
 import Routes from 'routers/routes';
 import CommonRoute from 'routers/CommonRoute';
 import Home from 'pages/Home/Home';
+import QrScanRedirect from 'pages/QrScanRedirect/QrScanRedirect';
 
 import { AppBody } from './App.styles';
 
-const BASE_URL = '/react-template-TODO';
+const BASE_URL = '/grepp-google-sheet';
 
 function App() {
-  const { root, roota } = Routes;
+  const { root, qrScanRedirect, addTerm } = Routes;
 
   return (
     <ConfirmModalProvider>
@@ -23,8 +24,11 @@ function App() {
         <AppBody>
           <GlobalTheme />
           <Switch>
-            <CommonRoute path={roota.path}>
-              <div>asdad</div>
+            <CommonRoute path={qrScanRedirect.path}>
+              <QrScanRedirect />
+            </CommonRoute>
+            <CommonRoute path={addTerm.path}>
+              <QrScanRedirect />
             </CommonRoute>
             <CommonRoute path={root.path}>
               <Home />

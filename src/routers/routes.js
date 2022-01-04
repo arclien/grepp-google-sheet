@@ -4,13 +4,18 @@ const root = {
   description: 'Home Page',
 };
 
-const roota = {
-  path: `/a`,
-  url: `/a`,
-  description: 'A Page',
+const qrScanRedirect = {
+  path: `/qr-scan-redirect`,
+  url: `/qr-scan-redirect`,
+  description: 'Qr Scan Page',
 };
 
+const addTerm = {
+  path: `/add-term`,
+  url: `/add-term`,
+  description: 'Add Terminology',
+};
 
 export default {
-  root, roota
+  root, qrScanRedirect, addTerm
 };

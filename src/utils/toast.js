@@ -14,14 +14,14 @@ const defaultToastOption = {
 
 export const customToast = (content) => {
   toast(content, {
-    className: 'ReactTemplateTODOToast',
+    className: 'GreppGoogleSheetToast',
     ...defaultToastOption,
   });
 };
 
 export const errorToast = (content) => {
   toast.error(`${content}`, {
-    className: 'ReactTemplateTODOToastError',
+    className: 'GreppGoogleSheetToastError',
     ...defaultToastOption,
   });
 };
