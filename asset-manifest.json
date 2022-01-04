@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/grepp-google-sheet/static/css/main.09e3fb90.chunk.css",
+    "main.js": "/grepp-google-sheet/static/js/main.e99abff7.chunk.js",
+    "runtime-main.js": "/grepp-google-sheet/static/js/runtime-main.356eea7c.js",
+    "static/css/2.4e86bdd4.chunk.css": "/grepp-google-sheet/static/css/2.4e86bdd4.chunk.css",
+    "static/js/2.77b9c523.chunk.js": "/grepp-google-sheet/static/js/2.77b9c523.chunk.js",
+    "index.html": "/grepp-google-sheet/index.html",
+    "static/js/2.77b9c523.chunk.js.LICENSE.txt": "/grepp-google-sheet/static/js/2.77b9c523.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.356eea7c.js",
+    "static/css/2.4e86bdd4.chunk.css",
+    "static/js/2.77b9c523.chunk.js",
+    "static/css/main.09e3fb90.chunk.css",
+    "static/js/main.e99abff7.chunk.js"
+  ]
+}
