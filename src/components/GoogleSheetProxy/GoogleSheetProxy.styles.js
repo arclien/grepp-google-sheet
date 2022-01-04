@@ -6,12 +6,18 @@ import {
   gray400,
   BaseInput,
   NewBaseButton,
-  Select,
+  mobileOnly,
 } from 'remember-ui';
 
 export const WelcomeContainer = styled.div`
   ${flexContainer('center', 'center', 'column')};
+
   width: 50%;
+
+  ${mobileOnly(css`
+    width: 100%;
+    padding: 20px;
+  `)}
 `;
 
 export const Title = styled.div`
