@@ -27,6 +27,7 @@ export default function useGoogleSheet() {
         ...productInfo,
       },
     ];
+
     if (CACHE?.googleSheet?.sheet && addedRows.length > 0) {
       return CACHE?.googleSheet?.sheet?.addRows(addedRows);
     }

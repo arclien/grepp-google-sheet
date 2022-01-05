@@ -3,6 +3,7 @@ import {
   flexContainer,
   Spinner,
   font,
+  gray100,
   gray400,
   BaseInput,
   NewBaseButton,
@@ -62,6 +63,16 @@ export const Input = styled(BaseInput)`
     height: 8px;
     top: -2px;
   }
+
+  ${({ readonly }) =>
+    readonly &&
+    css`
+      > input {
+        background-color: ${gray100};
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    `}
 `;
 
 export const ClickButton = styled(NewBaseButton)`
@@ -73,7 +84,6 @@ export const ClickButton = styled(NewBaseButton)`
   padding: 0 16px;
   margin: 0 auto;
 
-  bottom: 16px;
   height: 44px;
   box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.3), inset 4px 4px 0 0 #ffefb4,
     inset -4px -4px 0 0 #d4ab0f;

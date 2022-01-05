@@ -18,6 +18,8 @@ import {
   ClickButton,
 } from './GoogleSheetProxy.styles';
 
+const PEOPLE_MANAGER = 'Rachel';
+
 const PRODUCT_STATUS = {
   new: '구입',
   rent: '대여',
@@ -38,9 +40,9 @@ const DefaultValue = {
   status: undefined,
   category: undefined,
   owner: '',
-  manager: 'Rachel',
+  manager: PEOPLE_MANAGER,
   note: '',
-  timestamp: getTodayDate('YY-MM-DD'),
+  timestamp: getTodayDate('YYYY년 M월 D일'),
 };
 
 const Landing = () => {
@@ -62,13 +64,15 @@ const Landing = () => {
   const createPayload = () => {
     const payload = {
       [SHEET_COLUMN_KEY.owner]: formData.owner,
-      [SHEET_COLUMN_KEY.category]: formData.category,
+      [SHEET_COLUMN_KEY.category]: PRODUCT_CATEGORY[formData.category],
       [SHEET_COLUMN_KEY.modelName]: 'TODO',
       [SHEET_COLUMN_KEY.productId]: formData.productId,
       [SHEET_COLUMN_KEY.productYear]: 'TODO',
       [SHEET_COLUMN_KEY.rentTimestamp]: formData.timestamp,
       [SHEET_COLUMN_KEY.poNumber]: 'TODO',
-      [SHEET_COLUMN_KEY.note]: 'TODO',
+      [SHEET_COLUMN_KEY.note]: `[${PRODUCT_STATUS[formData.status]}]: ${
+        formData.note
+      }`,
     };
 
     return payload;
