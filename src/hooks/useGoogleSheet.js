@@ -64,23 +64,31 @@ export default function useGoogleSheet() {
       const productData = CACHE.googleSheet.rows.map(
         ({
           owner,
+          status,
           category,
-          modelName,
+          productModelName,
           productId,
           productYear,
-          rentTimestamp,
-          poNumber,
+          productSpec,
+          productRentYear,
           note,
+          poNumber,
+          manager,
+          confirmTimestamp,
         }) => {
           return {
             owner,
+            status,
             category,
-            modelName,
+            productModelName,
             productId,
             productYear,
-            rentTimestamp,
-            poNumber,
+            productSpec,
+            productRentYear,
             note,
+            poNumber,
+            manager,
+            confirmTimestamp,
           };
         }
       );

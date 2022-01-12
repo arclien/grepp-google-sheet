@@ -11,13 +11,17 @@ const GOOGLE_SERVICE_PRIVATE_KEY = REACT_APP_GOOGLE_SERVICE_PRIVATE_KEY;
 
 const SHEET_COLUMN_KEY = {
   owner: '사용자',
+  status: '상태',
   category: '물품',
-  modelName: '모델명',
+  productModelName: '모델명',
   productId: '일련번호',
+  productSpec: '세부 스펙 및 내용',
   productYear: '출시 연도',
-  rentTimestamp: '지급 연도',
-  poNumber: 'PO번호',
+  productRentYear: '지급 연도',
   note: '비고',
+  poNumber: 'PO번호',
+  manager: '확인 담당자',
+  confirmTimestamp: '확인 시간'
 };
 
 export {

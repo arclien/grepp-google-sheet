@@ -8,6 +8,7 @@ import {
   BaseInput,
   NewBaseButton,
   mobileOnly,
+  Select,
 } from 'remember-ui';
 
 export const WelcomeContainer = styled.div`
@@ -74,6 +75,10 @@ export const Input = styled(BaseInput)`
       }
     `}
 `;
+
+export const SelectInput = styled(Select)`
+  width: 100%;
+`
 
 export const ClickButton = styled(NewBaseButton)`
   ${font({ size: '16px', weight: 'bold', color: '#000' })};

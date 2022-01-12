@@ -4,7 +4,7 @@ import qs from 'qs';
 
 import useGoogleSheet from 'hooks/useGoogleSheet';
 import RadioButton from 'components/RadioButton/RadioButton';
-import { getTodayDate } from 'utils/day';
+import { getTodayDate, getYear } from 'utils/day';
 import { errorToast, customToast } from 'utils/toast';
 import { SHEET_COLUMN_KEY } from 'constants/googlesheet';
 
@@ -16,6 +16,7 @@ import {
   Row,
   Input,
   ClickButton,
+  SelectInput,
 } from './GoogleSheetProxy.styles';
 
 const PEOPLE_MANAGER = 'Rachel';
@@ -35,14 +36,52 @@ const PRODUCT_CATEGORY = {
   printer: '복합기',
 };
 
+const YearOptions = [
+  {
+    id: 1,
+    label: '2022년',
+    value: '2022',
+  },
+  {
+    id: 2,
+    label: '2021년',
+    value: '2021',
+  },
+  {
+    id: 3,
+    label: '2020년',
+    value: '2020',
+  },
+  {
+    id: 4,
+    label: '2019년',
+    value: '2019',
+  },
+  {
+    id: 5,
+    label: '2018년',
+    value: '2018',
+  },
+  {
+    id: 6,
+    label: '2017년',
+    value: '2017',
+  },
+];
+
 const DefaultValue = {
-  productId: undefined,
+  owner: '',
   status: undefined,
   category: undefined,
-  owner: '',
-  manager: PEOPLE_MANAGER,
+  productModelName: '',
+  productId: undefined,
+  productSpec: '',
+  productYear: 1, // YearOptions의 id 값
+  productRentYear:  1, // YearOptions의 id 값
   note: '',
-  timestamp: getTodayDate('YYYY년 M월 D일'),
+  poNumber: 'TODO',
+  manager: PEOPLE_MANAGER,
+  confirmTimestamp: getTodayDate('YYYY년 M월 D일'),
 };
 
 const Landing = () => {
@@ -61,18 +100,24 @@ const Landing = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const getYearTextById = (id) => YearOptions.find((el) => el.id === id).label;
+
   const createPayload = () => {
     const payload = {
       [SHEET_COLUMN_KEY.owner]: formData.owner,
+      [SHEET_COLUMN_KEY.status]: PRODUCT_STATUS[formData.status],
       [SHEET_COLUMN_KEY.category]: PRODUCT_CATEGORY[formData.category],
-      [SHEET_COLUMN_KEY.modelName]: 'TODO',
+      [SHEET_COLUMN_KEY.productModelName]: formData.productModelName,
       [SHEET_COLUMN_KEY.productId]: formData.productId,
-      [SHEET_COLUMN_KEY.productYear]: 'TODO',
-      [SHEET_COLUMN_KEY.rentTimestamp]: formData.timestamp,
-      [SHEET_COLUMN_KEY.poNumber]: 'TODO',
+      [SHEET_COLUMN_KEY.productSpec]: formData.productSpec,
+      [SHEET_COLUMN_KEY.productYear]: getYearTextById(formData.productYear),
+      [SHEET_COLUMN_KEY.productRentYear]: getYearTextById(formData.productRentYear),
       [SHEET_COLUMN_KEY.note]: `[${PRODUCT_STATUS[formData.status]}]: ${
         formData.note
       }`,
+      [SHEET_COLUMN_KEY.poNumber]: formData.poNumber,
+      [SHEET_COLUMN_KEY.manager]: formData.manager,
+      [SHEET_COLUMN_KEY.confirmTimestamp]: formData.confirmTimestamp,
     };
 
     return payload;
@@ -121,25 +166,16 @@ const Landing = () => {
     })();
   }, [isLoading]);
 
+  const { owner, status, category, productModelName, productId, productYear, productSpec, productRentYear, note, poNumber, confirmTimestamp, manager } = SHEET_COLUMN_KEY;
   return (
+    
     <>
       {!isLoading && (
         <WelcomeContainer>
           <Title>Grepp 장비 관리</Title>
-
-          <Row>
-            <RadioButton
-              title="상태"
-              required
-              value={formData.status}
-              formKey="status"
-              onClickRadio={handleFormData}
-              radioOptions={PRODUCT_STATUS}
-            />
-          </Row>
           <Row>
             <Input
-              label="소유자"
+              label={owner}
               required
               value={formData.owner}
               onChange={(e) => {
@@ -148,17 +184,18 @@ const Landing = () => {
             />
           </Row>
           <Row>
-            <Input
-              label="비고"
-              value={formData.note}
-              onChange={(e) => {
-                handleFormData('note', e.target.value);
-              }}
+            <RadioButton
+              title={status}
+              required
+              value={formData.status}
+              formKey="status"
+              onClickRadio={handleFormData}
+              radioOptions={PRODUCT_STATUS}
             />
           </Row>
           <Row>
             <RadioButton
-              title="장비"
+              title={category}
               required
               value={formData.category}
               formKey="category"
@@ -168,7 +205,17 @@ const Landing = () => {
           </Row>
           <Row>
             <Input
-              label="제품 아이디"
+              required
+              label={productModelName}
+              value={formData.productModelName}
+              onChange={(e) => {
+                handleFormData('productModelName', e.target.value);
+              }}
+            />
+          </Row>
+          <Row>
+            <Input
+              label={productId}
               required
               readonly
               value={formData.productId}
@@ -176,18 +223,69 @@ const Landing = () => {
           </Row>
           <Row>
             <Input
-              label="담당자"
               required
-              readonly
+              label={productSpec}
+              value={formData.productSpec}
+              onChange={(e) => {
+                handleFormData('productSpec', e.target.value);
+              }}
+            />
+          </Row>
+          <Row>
+            <SelectInput
+              required
+              label={productYear}
+              value={formData.productYear}
+              onChange={(e) => {
+                handleFormData('productYear', e);
+              }}
+              options={YearOptions}
+              maxHeight={100}
+            />
+          </Row>
+          <Row>
+            <SelectInput
+              required
+              label={productRentYear}
+              value={formData.productRentYear}
+              onChange={(e) => {
+                handleFormData('productRentYear', e);
+              }}
+              options={YearOptions}
+              maxHeight={100}
+            />
+          </Row>
+          <Row>
+            <Input
+              label={note}
+              value={formData.note}
+              onChange={(e) => {
+                handleFormData('note', e.target.value);
+              }}
+            />
+          </Row>
+          <Row>
+            <Input
+              label={poNumber}
+              value={formData.poNumber}
+              onChange={(e) => {
+                handleFormData('poNumber', e.target.value);
+              }}
+            />
+          </Row>
+          <Row>
+            <Input
+              label={manager}
+              required
               value={DefaultValue.manager}
             />
           </Row>
           <Row>
             <Input
-              label="날짜"
+              label={confirmTimestamp}
               required
               readonly
-              value={DefaultValue.timestamp}
+              value={DefaultValue.confirmTimestamp}
             />
           </Row>
           <Row>

@@ -11,6 +11,8 @@ export const getFormattedDate = (date, format = CalendarFormat) =>
 
 export const getTodayDate = (format = CalendarFormat) => dayjs().format(format);
 
+export const getYear = () => dayjs().year();
+
 export const isWeekend = (date) =>
   dayjs(date).day() === 0 || dayjs(date).day() === 6;
 
