@@ -150,7 +150,7 @@ const Landing = () => {
   };
 
   useEffect(() => {
-    handleFormData('productId', parseInt(productNumber, 10));
+    handleFormData('productId', productNumber);
   }, [productNumber]);
 
   useEffect(() => {
