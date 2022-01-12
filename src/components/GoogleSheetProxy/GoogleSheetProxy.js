@@ -25,6 +25,8 @@ const PRODUCT_STATUS = {
   new: '구입',
   rent: '대여',
   return: '반납',
+  sale: '판매',
+  repair: '수리',
   damaged: '파손',
   discard: '폐기',
 };
@@ -34,6 +36,11 @@ const PRODUCT_CATEGORY = {
   window: '윈도우 노트북',
   monitor: '모니터',
   printer: '복합기',
+  cam: '웹캠',
+  mic: '마이크',
+  gopro: '고프로',
+  phone: '휴대폰',
+  ctypegender: 'C-Type Gender',
 };
 
 const YearOptions = [
